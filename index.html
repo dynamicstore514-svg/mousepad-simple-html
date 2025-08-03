@@ -35,6 +35,24 @@
       font-size: 18px;
       margin: 15px 0;
     }
+    form {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    input, textarea {
+      width: 300px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
     button {
       background-color: #ff3c00;
       color: white;
@@ -55,8 +73,29 @@
   <header>Ultimate Gaming Gear</header>
 
   <main>
-    <img src="./images/4A45171F1D0B2C1EE83AE6915B1555C4.jpg" alt="Full Black RGB Mouse Pad" />
+    <img src="./images/4A45171F1D0B2C1EE83AE6915B1555C4.jpg" alt="Full Black RGB Mouse Pad" sizes="flex"/>
     <h1>Full Black RGB Pad</h1>
     <p>Upgrade your setup with our premium mouse pad featuring vibrant RGB lighting.</p>
     <p><strong>Size:</strong> 300 x 800 x 4 mm</p>
-    <button onclick="alert('Thanks
+
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLScZ1Esf0j8aLPFWlLBzn8X4tfbYE9cbg9dmD6DIOkEM5CVKSA/viewform" method="POST" target="_blank">
+   <input name="entry.2005620554" type="text" placeholder="Your Name" required />
+   <input name="entry.1166974658" type="tel" placeholder="Mobile Number" required />
+   <textarea name="entry.1065046570" placeholder="Delivery Address" required></textarea>
+   <button type="submit">Order Now</button>
+  </form>
+
+  <script>
+    function submitOrder(event) {
+      event.preventDefault();
+      const name = event.target.name.value;
+      const mobile = event.target.mobile.value;
+      const address = event.target.address.value;
+
+      alert(`Order placed!\n\nName: ${name}\nMobile: ${mobile}\nAddress: ${address}`);
+      // You can send this data to your server or use Netlify Forms / Google Sheets etc.
+    }
+  </script>
+
+</body>
+</html>
