@@ -78,24 +78,35 @@
     <p>Upgrade your setup with our premium mouse pad featuring vibrant RGB lighting.</p>
     <p><strong>Size:</strong> 300 x 800 x 4 mm</p>
                 
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLScZ1Esf0j8aLPFWlLBzn8X4tfbYE9cbg9dmD6DIOkEM5CVKSA/formResponse" method="POST" target="_blank">
-   <input name="entry.2005620554" type="text" placeholder="Your Name" required />
-   <input name="entry.1166974658" type="tel" placeholder="Mobile Number" required />
-   <textarea name="entry.1065046570" placeholder="Delivery Address" required></textarea>
-   <button type="submit">Order Now</button>
-  </form>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
-  <script>
-    function submitOrder(event) {
-      event.preventDefault();
-      const name = event.target.name.value;
-      const mobile = event.target.mobile.value;
-      const address = event.target.address.value;
+<form
+  action="https://docs.google.com/forms/d/e/1FAIpQLScZ1Esf0j8aLPFWlLBzn8X4tfbYE9cbg9dmD6DIOkEM5CVKSA/formResponse"
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="submitted=true"
+>
+  <input name="entry.2005620554" placeholder="Your Name" required />
+  <input name="entry.1166974658" placeholder="Mobile Number" required />
+  <textarea name="entry.1065046570" placeholder="Address" required></textarea>
+  <button type="submit">Order Now</button>
+</form>
 
-      alert(`Order placed!\n\nName: ${name}\nMobile: ${mobile}\nAddress: ${address}`);
-      // You can send this data to your server or use Netlify Forms / Google Sheets etc.
-    }
-  </script>
+<p id="thankYou" style="display:none; color:limegreen;">Thanks! Your order has been submitted.</p>
+
+<script>
+  let submitted = false;
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function () {
+    submitted = true;
+    setTimeout(() => {
+      if (submitted) {
+        document.getElementById("thankYou").style.display = "block";
+        form.reset();
+      }
+    }, 1000); // wait for iframe to process submission
+  });
+</script>
 
 </body>
 </html>
