@@ -80,6 +80,20 @@
                 
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
+<script>
+  let submitted = false;
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function () {
+    submitted = true;
+    setTimeout(() => {
+      if (submitted) {
+        document.getElementById("thankYou").style.display = "block";
+        form.reset();
+      }
+    }, 1000); // wait for iframe to process submission
+  });
+</script>
+
 <form
   action="https://docs.google.com/forms/d/e/1FAIpQLScZ1Esf0j8aLPFWlLBzn8X4tfbYE9cbg9dmD6DIOkEM5CVKSA/formResponse"
   method="POST"
@@ -94,19 +108,7 @@
 
 <p id="thankYou" style="display:none; color:limegreen;">Thanks! Your order has been submitted.</p>
 
-<script>
-  let submitted = false;
-  const form = document.querySelector("form");
-  form.addEventListener("submit", function () {
-    submitted = true;
-    setTimeout(() => {
-      if (submitted) {
-        document.getElementById("thankYou").style.display = "block";
-        form.reset();
-      }
-    }, 1000); // wait for iframe to process submission
-  });
-</script>
+
 
 </body>
 </html>
