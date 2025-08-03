@@ -66,6 +66,12 @@
     button:hover {
       background-color: #e03500;
     }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
   </style>
 </head>
 <body>
@@ -108,7 +114,9 @@
   <button type="submit">Order Now</button>
 </form>
 
-<h3 id="thankYou" style="display:none; color:limegreen;">Thanks! Your order has been submitted. We will call you to confirm order shortly. </h3>
+<p id="thankYou" style="display:none; color:limegreen; font-weight: bold; animation: blink 1s infinite;">
+  Thanks! Your order has been submitted. We will call you to confirm order shortly.
+</p>
 
 <script>
   function adjustQuantity(change) {
